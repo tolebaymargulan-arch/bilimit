@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meridian Kids — Балаларды дамыту орталығы | Шымкент</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', sans-serif; }
+        body { background: #FFFBF5; color: #1E293B; line-height: 1.6; }
+        .container { max-width: 540px; margin: 0 auto; padding: 16px; }
+        
+        /* Hero бөлімі */
+        .hero {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 36px 24px;
+            border-radius: 28px;
+            text-align: center;
+            box-shadow: 0 12px 24px rgba(255, 107, 107, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .location-pill {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .hero h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+        .hero p { font-size: 16px; opacity: 0.95; max-width: 400px; margin: 0 auto 20px; }
+        .hero-btn {
+            display: inline-block;
+            background: #FFFFFF;
+            color: #FF6B6B;
+            font-weight: 800;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .hero-btn:active { transform: scale(0.96); }
+
+        /* Артықшылықтар */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 18px 0;
+        }
+        .stat-box {
+            background: white;
+            padding: 14px 8px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #F1F5F9;
+        }
+        .stat-box span { display: block; font-size: 20px; font-weight: 800; color: #3B82F6; }
+        .stat-box small { font-size: 12px; color: #64748B; font-weight: 600; }
+
+        /* Бағыттар */
+        .section-title { font-size: 22px; font-weight: 800; margin: 24px 0 14px; text-align: center; color: #0F172A; }
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid #F1F5F9;
+        }
+        .icon-box {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+        .bg-blue { background: #DBEAFE; }
+        .bg-green { background: #DCFCE7; }
+        .bg-purple { background: #F3E8FF; }
+        .bg-yellow { background: #FEF9C3; }
+        .course-info h3 { font-size: 17px; font-weight: 800; color: #1E293B; margin-bottom: 3px; }
+        .course-info p { font-size: 13.5px; color: #64748B; line-height: 1.4; }
+
+        /* Өтінім формасы */
+        .form-card {
+            background: #EFF6FF;
+            border: 2px dashed #93C5FD;
+            border-radius: 24px;
+            padding: 24px 20px;
+            margin-top: 24px;
+            text-align: center;
+        }
+        .form-card h2 { font-size: 20px; font-weight: 800; color: #1E3A8A; margin-bottom: 6px; }
+        .form-card p { font-size: 14px; color: #475569; margin-bottom: 16px; }
+        .input-group { margin-bottom: 12px; text-align: left; }
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid #CBD5E1;
+            font-size: 15px;
+            background: white;
+            outline: none;
+        }
+        input:focus, select:focus { border-color: #3B82F6; }
+        .submit-btn {
+            width: 100%;
+            background: #22C55E;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
+            margin-top: 6px;
+        }
+
+        /* Байланыс */
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 18px;
+            margin-top: 20px;
+            font-size: 14.5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .contact-item { margin-bottom: 10px; display: flex; gap: 10px; }
+        .map-link {
+            display: block;
+            text-align: center;
+            background: #F1F5F9;
+            color: #0F172A;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+        footer { text-align: center; font-size: 12.5px; color: #94A3B8; margin: 24px 0 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="hero">
+        <div class="location-pill">📍 Шымкент • Диваев көшесі, 11</div>
+        <h1>Meridian Kids</h1>
+        <p>Балаңыздың білімі мен болашағына сенімді қадам! Заманауи әдістемемен оқыту.</p>
+        <a href="#zazylu" class="hero-btn">🎁 Тегін сынақ сабағына жазылу</a>
+    </div>
+
+    <div class="stats">
+        <div class="stat-box">
+            <span>5.0 ★</span>
+            <small>2GIS рейтингі</small>
+        </div>
+        <div class="stat-box">
+            <span>0–5</span>
+            <small>Сыныптар</small>
+        </div>
+        <div class="stat-box">
+            <span>3 тіл</span>
+            <small>KZ • RU • ENG</small>
+        </div>
+    </div>
+
+    <h2 class="section-title">Біздің оқу бағыттары</h2>
+
+    <div class="course-card">
+        <div class="icon-box bg-yellow">🎒</div>
+        <div class="course-info">
+            <h3>Мектепке дайындық</h3>
+            <p>Оқу, жазу, логика, математика және зейінді дамытудың кешенді бағдарламасы.</p>
+        </div>
+    </div>
+
+    <div class="course-card">
+        <div class="icon-box bg-blue">📚</div>
+        <div class="course-info">
+            <h3>Үй тапсырмасы (0–5 сынып)</h3>
+            <p>Барлық пәндер бойынша сабақты түсіндіру және үй жұмысын бірге орындау.</p>
+        </div>
+    </div>
+
+    <div class="course-card">
+        <div class="icon-box bg-green">🌍</div>
+        <div class="course-info">
+            <h3>Тіл курстары (KZ / RU / ENG)</h3>
+            <p>Грамматика мен сөздік қорды ойын және интерактивті тәсілмен меңгеру.</p>
+        </div>
+    </div>
+
+    <div class="course-card">
+        <div class="icon-box bg-purple">🗣️</div>
+        <div class="course-info">
+            <h3>Speaking Club</h3>
+            <p>Ағылшын тілінде еркін сөйлеу, тілдік кедергіні жою және пікірталас клубы.</p>
+        </div>
+    </div>
+
+    <div class="form-card" id="zazylu">
+        <h2>Алғашқы сабақ — ТЕГІН!</h2>
+        <p>Төмендегі өрісті толтырыңыз, әкімші 10 минут ішінде хабарласады:</p>
+        
+        <div class="input-group">
+            <input type="text" id="childName" placeholder="Ата-ананың немесе баланың аты">
+        </div>
+        <div class="input-group">
+            <select id="courseSelect">
+                <option value="Мектепке дайындық">🎒 Мектепке дайындық</option>
+                <option value="Үй тапсырмасы">📚 Үй тапсырмасы (0–5 сынып)</option>
+                <option value="Тіл курстары">🌍 Тіл курстары</option>
+                <option value="Speaking Club">🗣️ Speaking Club</option>
+            </select>
+        </div>
+        <button class="submit-btn" onclick="sendToWhatsApp()">📲 WhatsApp арқылы жіберу</button>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-item">📍 <span><strong>Мекенжай:</strong> Шымкент қ., Әл-Фараби ауданы, Диваев көшесі, 11</span></div>
+        <div class="contact-item">⏰ <span><strong>Жұмыс уақыты:</strong> Дс–Сб, 08:00-ден бастап (алдын ала жазылу бойынша)</span></div>
+        <a href="https://2gis.kz" target="_blank" class="map-link">🗺️ 2GIS картадан көру</a>
+    </div>
+
+    <footer>
+        © 2026 Meridian Kids Оқу Орталығы • Шымкент
+    </footer>
+</div>
+
+<script>
+    function sendToWhatsApp() {
+        var name = document.getElementById('childName').value || 'Ата-ана';
+        var course = document.getElementById('courseSelect').value;
+        var phone = "77053660000"; // Клиент келіскен соң осы нөмірді өзгертесіз
+        var text = "Сәлеметсіз бе! Мен " + name + ". Meridian Kids орталығының «" + course + "» бағыты бойынша тегін сынақ сабағына жазылғым келеді.";
+        var url = "https://wa.me" + phone + "?text=" + encodeURIComponent(text);
+        window.open(url, '_blank');
+    }
+</script>
+
+</body>
+</html>
